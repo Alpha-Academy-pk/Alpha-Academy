@@ -5,103 +5,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Academy Blog</title>
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', Arial, sans-serif; /* Updated font */
             line-height: 1.6;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer is at bottom on short pages */
         }
         .container {
-            width: 80%;
+            width: 80%; /* Can be adjusted, e.g. 85% or 90% */
+            max-width: 1200px; /* Add a max-width for very large screens */
             margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
+            overflow: hidden; /* Keep this if elements inside might float */
+            padding: 0 20px; /* Keep for spacing inside container edges */
         }
+
+        /* Header container flex layout */
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px; /* Adjust padding as needed */
+            padding-bottom: 15px;
+        }
+
         header {
             background: #333;
             color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
+            /* min-height: 70px; remove or adjust as flexbox handles height */
             border-bottom: #0779e4 3px solid;
+            /* padding-top: 30px; remove as container handles padding */
         }
+
         header h1 {
-            text-align: center;
-            margin: 0;
-            font-size: 28px;
-            padding-bottom: 10px;
+            /* text-align: center; remove */
+            margin: 0; /* Reset margin */
+            font-size: 32px; /* Slightly larger */
+            font-weight: 700; /* Bold */
+            /* padding-bottom: 10px; remove or adjust */
         }
+
         header nav {
-            text-align: center;
-            padding-bottom: 10px;
+            /* text-align: center; remove */
+            /* padding-bottom: 10px; remove or adjust */
         }
+
         header nav ul {
             padding: 0;
             list-style: none;
+            margin: 0; /* Reset margin for ul */
         }
         header nav ul li {
             display: inline;
-            padding: 0 20px;
+            padding: 0; /* Remove padding from li if any was there, apply to <a> */
         }
+
         header nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 17px;
+            font-weight: 400; /* As set before */
+            padding: 10px 15px; /* More padding */
+            display: inline-block; /* Allows padding to work as expected */
+            border-radius: 4px; /* Slightly rounded corners for links */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
         header nav a:hover {
-            color: #0779e4;
+            background-color: #0779e4; /* Theme color background */
+            color: #fff; /* White text on hover */
         }
+        /*
+        header nav a.current {
+            background-color: #0779e4;
+            color: #fff;
+            font-weight: 700; // Make it bolder
+        }
+        */
         main {
-            padding: 20px 0;
+            flex-grow: 1; /* Allows main to expand and push footer down */
+            padding: 30px 0; /* Increased padding */
         }
         article {
             background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Slightly enhanced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover */
+        }
+        article:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
         }
         article h2 {
             color: #333;
             margin-top: 0;
+            font-size: 26px; /* Larger */
+            font-weight: 700; /* Bold */
+            margin-bottom: 15px; /* Space below heading */
         }
         article .date {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 10px;
+            font-size: 0.85em; /* Slightly smaller */
+            color: #555; /* Darker grey */
+            margin-bottom: 15px; /* More space */
         }
         .post-content p {
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* Consistent spacing */
+            font-size: 16px; /* Standard paragraph size */
+            line-height: 1.7; /* Slightly more spacious */
+        }
+        .read-more-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #0779e4; /* Theme color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-more-link:hover {
+            background-color: #0056b3; /* Darker shade of theme color */
+            color: #fff; /* Ensure text color remains white */
         }
         footer {
             text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
-            margin-top: 20px;
+            padding: 30px 0; /* Increase padding for more space */
+            background: #222; /* Slightly lighter dark shade for footer */
+            color: #ccc; /* Lighter text color for better contrast on darker bg */
+            margin-top: 0; /* Remove margin-top as main's flex-grow handles space */
         }
+        footer p { /* Targeting the copyright paragraph specifically */
+            margin: 0 0 10px 0; /* Space below copyright */
+            font-size: 0.9em;
+        }
+        footer .social-links { /* Targeting the div containing social media links */
+            margin-top: 10px;
+        }
+        /* Footer styling can remain similar, ensure its container is also well-behaved */
+        /* footer .container padding is handled by footer general padding */
+
         footer a {
-            color: #fff;
+            color: #07c8f9; /* Brighter link color for visibility */
             text-decoration: none;
+            padding: 5px 10px; /* More defined clickable area */
+            margin: 0 5px; /* Space between links */
+            border-radius: 4px; /* Rounded corners for links */
+            transition: color 0.3s ease, background-color 0.3s ease; /* Add background transition */
         }
+
         footer a:hover {
-            color: #0779e4;
+            color: #fff; /* White text on hover */
+            background-color: #0779e4; /* Theme color background on hover */
         }
 
         /* Basic Responsive */
         @media(max-width: 768px){
+            header .container {
+                flex-direction: column; /* Stacks title and nav */
+                align-items: center; /* Center items when stacked */
+            }
+
             header h1 {
-                font-size: 24px;
+                font-size: 28px; /* Keep it readable, was 32px */
+                margin-bottom: 15px; /* More space when stacked */
             }
+
+            header nav ul {
+                /* Removed: display: flex; and flex-direction: column; not needed if li are block */
+                width: 100%; /* Allow ul to take full width for text-align to work on children */
+            }
+
             header nav ul li {
-                padding: 0 10px;
+                display: block; /* Make nav links stack vertically */
+                text-align: center; /* Center nav links text */
+                margin-bottom: 8px; /* Space between stacked nav links */
             }
+
+            header nav ul li:last-child {
+                margin-bottom: 0; /* No margin for the last item */
+            }
+
+            header nav a {
+                display: block; /* Make link take full width of li */
+                padding: 12px; /* Consistent padding for stacked links */
+                /* background-color and color hover effects remain from base styles */
+            }
+
             .container {
-                width: 95%;
-                padding: 0 10px;
+                width: 90%; /* Slightly less than 95% for a bit more edge space */
+                padding: 0 15px; /* Adjust padding */
             }
+
+            article {
+                padding: 20px; /* Reduce padding slightly */
+                margin-bottom: 25px; /* Reduce margin slightly */
+            }
+
             article h2 {
-                font-size: 1.5em;
+                font-size: 22px; /* Adjusted from 1.5em, original was 26px */
+            }
+
+            .post-content p {
+                font-size: 15px; /* Slightly smaller for mobile */
+                line-height: 1.6; /* Adjust line height */
+            }
+
+            .read-more-link {
+                padding: 10px 15px; /* Ensure good tap size */
+                font-size: 1em; /* Keep font size reasonable */
+            }
+
+            footer .social-links a {
+                padding: 8px 10px; /* Adjust padding for social links */
+                margin: 5px; /* Allow wrapping with consistent spacing */
+            }
+        }
+
+        @media(max-width: 480px){
+            header h1 {
+                font-size: 24px; /* Further reduce title size */
+            }
+
+            header nav a {
+                padding: 10px; /* Further adjust nav link padding */
+                font-size: 16px; /* Adjust nav font size */
+            }
+
+            .container {
+                width: 95%; /* Use more of the screen on very small devices */
+            }
+
+            article {
+                padding: 15px; /* Less padding on very small screens */
+                margin-bottom: 20px;
+            }
+
+            article h2 {
+                font-size: 20px; /* Further reduce article title */
+            }
+
+            .post-content p {
+                font-size: 14px; /* Smaller text */
+            }
+
+            .read-more-link {
+                padding: 8px 12px;
+                font-size: 0.9em; /* Smaller read more */
+                width: 100%; /* Make read more full width */
+                text-align: center; /* Center text in full width button */
+                box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            }
+
+            footer p {
+                font-size: 0.8em; /* Smaller copyright text */
+            }
+
+            footer .social-links a {
+                padding: 6px 8px; /* Smaller social links */
+                font-size: 0.9em;
+                margin: 3px;
             }
         }
     </style>
@@ -127,6 +297,7 @@
             <div class="post-content">
                 <p>This is the first blog post on Alpha Academy. We are excited to share insights, news, and updates about our journey. Stay tuned for more content!</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p><a href="#" class="read-more-link">Read More &raquo;</a></p>
             </div>
         </article>
         <article>
@@ -135,6 +306,7 @@
             <div class="post-content">
                 <p>Discover how Alpha Academy is fostering a new generation of thinkers and creators. Our programs are designed to spark curiosity and encourage innovation.</p>
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><a href="#" class="read-more-link">Read More &raquo;</a></p>
             </div>
         </article>
         <article>
@@ -143,6 +315,7 @@
             <div class="post-content">
                 <p>At Alpha Academy, we believe in the power of continuous learning. Explore our resources and join our community of learners.</p>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                <p><a href="#" class="read-more-link">Read More &raquo;</a></p>
             </div>
         </article>
         <article>
@@ -151,6 +324,7 @@
             <div class="post-content">
                 <p>Read inspiring stories from our students and alumni. See how Alpha Academy has made a difference in their lives and careers.</p>
                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                <p><a href="#" class="read-more-link">Read More &raquo;</a></p>
             </div>
         </article>
         </div>
@@ -158,8 +332,11 @@
     <footer>
         <div class="container">
             <p>&copy; 2023 Alpha Academy. All rights reserved.</p>
-            <div>
-                <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a> | <a href="#">Instagram</a>
+            <div class="social-links"> <!-- Added a class for better targeting -->
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
             </div>
         </div>
     </footer>
